@@ -1,5 +1,7 @@
 import json
 import os
+import tempfile
+import shutil
 
 class FileSystemProvider(object):
     def __init__(self, path=os.path.expanduser("~/.secrets"), creds=None):
@@ -21,7 +23,6 @@ class FileSystemProvider(object):
 
     def removeAllSecrets(self, scope):
         if os.path.exists(self.scope_path(scope)):
-            print "Removing"
             os.remove(self.scope_path(scope))
 
     def getSecret(self, scope, key):
@@ -30,10 +31,10 @@ class FileSystemProvider(object):
     def storeSecret(self, scope, key, value):
         secrets = self.getSecrets(scope)
         secrets[key] = value
-        # TODO: This probably isn't safe, should make separate file
-        # and then swap on completion.
-        with open(self.scope_path(scope), "w") as secret_file:
-            json.dump(secrets, secret_file)
+        # File swap
+        with tempfile.NamedTemporaryFile(delete=False) as temp_secret_file:
+            json.dump(secrets, temp_secret_file)
+        shutil.move(temp_secret_file.name, self.scope_path(scope))
 
 credentials = None
 provider = FileSystemProvider()
