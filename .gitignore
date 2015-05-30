@@ -1,0 +1,4 @@
+build
+dist
+secrets.egg-info
+*.pyc
