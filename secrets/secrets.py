@@ -36,6 +36,20 @@ class FileSystemProvider(object):
             json.dump(secrets, temp_secret_file)
         shutil.move(temp_secret_file.name, self.scope_path(scope))
 
+    def getScopes(self):
+        result = []
+        for file in os.listdir(self.path):
+            result.append(file)
+        return result
+
+    def dumpScope(self, scope):
+        print self.getSecrets(scope)
+
+    def dumpSecrets(self):
+        for scope in self.getScopes():
+            print scope
+            self.dumpScope(scope)
+
 credentials = None
 provider = FileSystemProvider()
 
@@ -45,6 +59,17 @@ def getSecret(scope, key):
 def removeAllSecrets(scope):
     return provider.removeAllSecrets(scope)
 
+def storeSecret(scope, key, value):
+    return provider.storeSecret(scope, key, value)
 
 def setCredentials(creds):
     creds = creds
+
+def dumpSecrets():
+    provider.dumpSecrets()
+
+def listScopes():
+    return provider.listScopes()
+
+def showScope(scope):
+    provider.showScope(scope)

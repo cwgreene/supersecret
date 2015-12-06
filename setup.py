@@ -6,5 +6,6 @@ setup(
     author="Chris Greene",
     author_email="archgoon@gmail.com",
     license="MIT",
-    test_suite="tests"
+    test_suite="tests",
+    packages=['secrets'],
 )
