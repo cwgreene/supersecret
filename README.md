@@ -14,6 +14,6 @@ git repo.
     import secrets
 
     connect_to_website(username=secrets.getSecret("website.com", "username"),
-                       password=scretes.getSecret("website.com", "password")
+                       password=scretes.getSecret("website.com", "password"))
 
 The secrets are stored, unencrypted, in ~/.secrets
