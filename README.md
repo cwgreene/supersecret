@@ -20,7 +20,9 @@ connect_to_website(username=secrets.getSecret("website.com", "username"),
 
 The secrets are stored, unencrypted, in `~/.secrets`.
 
-## Scopes The first paramter in the above examples `"website.com"`
+## Scopes
+
+The first parameter in the above examples `"website.com"`
 is called a scope. Each scope will correspond to a separate file in
 `~/.secrets`.
 
