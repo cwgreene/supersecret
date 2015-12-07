@@ -18,6 +18,13 @@ connect_to_website(username=secrets.getSecret("website.com", "username"),
                    password=secrets.getSecret("website.com", "password"))
 ```
 
+You can also use `python -m secrets` to list and store secrets.
+
+```
+$ python -m secrets store website.com username bob
+$ python -m secrets show website.com
+```
+
 The secrets are stored, unencrypted, in `~/.secrets`.
 
 ## Installation
