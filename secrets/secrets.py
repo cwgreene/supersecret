@@ -69,7 +69,8 @@ def dumpSecrets():
     provider.dumpSecrets()
 
 def listScopes():
-    return provider.listScopes()
+    for scope in provider.getScopes():
+        print scope
 
 def dumpScope(scope):
     provider.dumpScope(scope)
