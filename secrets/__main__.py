@@ -13,7 +13,7 @@ def main(args):
     elif options.command == "list":
         secrets.listScopes()
     elif options.command == "store":
-        secrest.storeSecret(*args)
+        secrets.storeSecret(*args)
     elif options.command == "show":
         if len(args) > 1:
             secrets.getSecret(*args)
