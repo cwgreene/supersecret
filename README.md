@@ -18,4 +18,4 @@ connect_to_website(username=secrets.getSecret("website.com", "username"),
                    password=secrets.getSecret("website.com", "password"))
 ```
 
-The secrets are stored, unencrypted, in ~/.secrets
+The secrets are stored, unencrypted, in `~/.secrets`
