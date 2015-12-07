@@ -20,6 +20,20 @@ connect_to_website(username=secrets.getSecret("website.com", "username"),
 
 The secrets are stored, unencrypted, in `~/.secrets`.
 
+## Installation
+
+You can clone the repo and run
+
+```shell
+$ python setup.py install
+```
+
+Or you can install directly using pip and this repo
+
+```shell
+$ pip install git+git://github.com/cwgreene/secrets.git
+```
+
 ## Scopes
 
 The first parameter in the above examples `"website.com"`
