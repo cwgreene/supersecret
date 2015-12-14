@@ -11,25 +11,28 @@ class TestSecrets(unittest.TestCase):
         SECRET = "Abracdabra"
         SECRET2 = "Abracdabra2"
 
-        # Create scope
+        # Create provider
         provider = secrets.FileSystemProvider("data/secrets/")
-        provider.removeAllSecrets(SCOPE)
+        secrets.provider = provider
+
+        # Create a Scope
+        secrets.removeAllSecrets(SCOPE)
         self.assertFalse(os.path.exists(provider.scope_path(SCOPE)))
 
         # Store Secret
-        provider.storeSecret(SCOPE, KEY, SECRET)
-        stored_secret = provider.getSecret(SCOPE, KEY)
+        secrets.storeSecret(SCOPE, KEY, SECRET)
+        stored_secret = secrets.getSecret(SCOPE, KEY)
         self.assertEqual(SECRET, stored_secret)
 
         # Store Another Secret, verify original
-        provider.storeSecret(SCOPE, KEY2, SECRET2)
-        stored_secret = provider.getSecret(SCOPE, KEY)
+        secrets.storeSecret(SCOPE, KEY2, SECRET2)
+        stored_secret = secrets.getSecret(SCOPE, KEY)
         self.assertEqual(SECRET, stored_secret)
 
         # Verify new secret
-        stored_secret = provider.getSecret(SCOPE, KEY2)
+        stored_secret = secrets.getSecret(SCOPE, KEY2)
         self.assertEqual(SECRET2, stored_secret)
 
         # Destroy Scope
-        provider.removeAllSecrets(SCOPE)
+        secrets.removeAllSecrets(SCOPE)
         self.assertFalse(os.path.exists(provider.scope_path(SCOPE)))

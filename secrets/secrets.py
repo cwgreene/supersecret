@@ -54,7 +54,7 @@ credentials = None
 provider = FileSystemProvider()
 
 def getSecret(scope, key):
-    return provider.get(scope, key)
+    return provider.getSecret(scope, key)
 
 def removeAllSecrets(scope):
     return provider.removeAllSecrets(scope)

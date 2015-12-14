@@ -16,7 +16,7 @@ def main(args):
         secrets.storeSecret(*args)
     elif options.command == "show":
         if len(args) > 1:
-            secrets.getSecret(*args)
+            print secrets.getSecret(*args)
         if len(args) == 1:
             secrets.dumpScope(*args)
     elif options.command == "clear":
