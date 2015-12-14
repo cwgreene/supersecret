@@ -3,6 +3,13 @@ import os
 import tempfile
 import shutil
 
+class NoSuchSecret(Exception):
+    def __init__(self, scope, key):
+        self.scope = scope
+        self.key = key
+    def __str__(self):
+        return "'%s' is not a secret in scope '%s'" % (self.key, self.scope)
+
 class FileSystemProvider(object):
     def __init__(self, path=os.path.expanduser("~/.secrets"), creds=None):
         if not os.path.exists(path):
@@ -28,7 +35,10 @@ class FileSystemProvider(object):
             os.remove(self.scope_path(scope))
 
     def getSecret(self, scope, key):
-        return self.getSecrets(scope)[key]
+        try:
+            return self.getSecrets(scope)[key]
+        except KeyError:
+            raise NoSuchSecret(scope, key)
 
     def storeSecret(self, scope, key, value):
         secrets = self.getSecrets(scope)
@@ -76,3 +86,10 @@ def listScopes():
 
 def dumpScope(scope):
     provider.dumpScope(scope)
+
+def require(secrets):
+    for scope in secrets:
+        scope_secrets = secrets.getSecrets(scope)
+        for key in scope:
+            if key not in scope_secrets:
+                raise NoSuchSecret(scope, key)
