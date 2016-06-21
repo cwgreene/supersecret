@@ -5,6 +5,8 @@ import shutil
 
 class FileSystemProvider(object):
     def __init__(self, path=os.path.expanduser("~/.secrets"), creds=None):
+        if not os.path.exists(path):
+            os.makedirs(path)
         if creds == None:
             creds = credentials
         self.path = path
