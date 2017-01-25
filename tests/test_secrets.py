@@ -4,7 +4,7 @@ import secrets
 
 class TestSecrets(unittest.TestCase):
     def testFileSecret(self):
-        """Tests entire lifecycle of a lifecycle secret"""
+        """Tests entire lifecycle of a secret"""
         SCOPE = "testSecrets"
         KEY = "testKey"
         KEY2 = "testKey2"
