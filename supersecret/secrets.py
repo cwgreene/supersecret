@@ -55,11 +55,11 @@ class FileSystemProvider(object):
         return result
 
     def dumpScope(self, scope):
-        print self.getSecrets(scope)
+        print(self.getSecrets(scope))
 
     def dumpSecrets(self):
         for scope in self.getScopes():
-            print scope
+            print(scope)
             self.dumpScope(scope)
 
 credentials = None
@@ -82,7 +82,7 @@ def dumpSecrets():
 
 def listScopes():
     for scope in provider.getScopes():
-        print scope
+        print(scope)
 
 def dumpScope(scope):
     provider.dumpScope(scope)
