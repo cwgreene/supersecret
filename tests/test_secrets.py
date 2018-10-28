@@ -1,6 +1,6 @@
 import os
 import unittest
-import secrets
+import supersecret as secrets
 
 class TestSecrets(unittest.TestCase):
     def testFileSecret(self):
