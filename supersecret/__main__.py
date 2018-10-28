@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-import secrets
+import supersecret as secrets
 
 def main(args):
     parser = argparse.ArgumentParser("Secrets command line interface")

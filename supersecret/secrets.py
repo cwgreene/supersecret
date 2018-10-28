@@ -44,7 +44,8 @@ class FileSystemProvider(object):
         secrets = self.getSecrets(scope)
         secrets[key] = value
         # File swap
-        with tempfile.NamedTemporaryFile(delete=False) as temp_secret_file:
+        print(secrets)
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_secret_file:
             json.dump(secrets, temp_secret_file)
         shutil.move(temp_secret_file.name, self.scope_path(scope))
 
