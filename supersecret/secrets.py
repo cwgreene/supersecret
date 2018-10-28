@@ -11,7 +11,7 @@ class NoSuchSecret(Exception):
         return "'%s' is not a secret in scope '%s'" % (self.key, self.scope)
 
 class FileSystemProvider(object):
-    def __init__(self, path=os.path.expanduser("~/.secrets"), creds=None):
+    def __init__(self, path=os.path.expanduser("~/.supersecret"), creds=None):
         if not os.path.exists(path):
             os.makedirs(path)
         if creds == None:
