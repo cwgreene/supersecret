@@ -30,6 +30,9 @@ class FileSystemProvider(object):
         with open(scope_path) as secretFile:
             return json.loads(secretFile.read())
 
+    def hasSecrets(self, scope):
+        return key in self.getSecrets(scope)
+
     def removeAllSecrets(self, scope):
         if os.path.exists(self.scope_path(scope)):
             os.remove(self.scope_path(scope))
@@ -65,6 +68,9 @@ class FileSystemProvider(object):
 
 credentials = None
 provider = FileSystemProvider()
+
+def hasSecret(scope, key):
+    return provider.hasSecret(scope, key)
 
 def getSecret(scope, key):
     return provider.getSecret(scope, key)
