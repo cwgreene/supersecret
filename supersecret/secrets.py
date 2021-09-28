@@ -30,7 +30,7 @@ class FileSystemProvider(object):
         with open(scope_path) as secretFile:
             return json.loads(secretFile.read())
 
-    def hasSecrets(self, scope):
+    def hasSecret(self, scope):
         return key in self.getSecrets(scope)
 
     def removeAllSecrets(self, scope):
